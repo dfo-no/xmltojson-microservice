@@ -4,11 +4,18 @@ version = "0.1.0"
 description = ""
 authors = ["r3d5un <r3d5un@pm.me>"]
 
+[tool.poetry.scripts]
+server = "service:create_app()"
+
 [tool.poetry.dependencies]
 python = "^3.11"
+xmltodict = "^0.13.0"
+Flask = "^2.2.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
+black = "^22.12.0"
+isort = "^5.11.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
