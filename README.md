@@ -10,10 +10,10 @@ Originally intended to be a reference project, additional methods have been adde
 
 Using the Flask (development) server:
 ```bash
-docker build --target development -p 8888:8888 -t poetry
+docker build --target development -t morpher . && docker run -p 8888:8888 morpher 
 ```
 
 Using the Gunicorn (production) server:
 ```bash
-docker run -p 8888:8888 -it poetry
+docker build -t morpher . && docker run -p 8888:8888 morpher 
 ```
