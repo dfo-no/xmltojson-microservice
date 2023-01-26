@@ -1,4 +1,4 @@
-from service import create_app
+from morpher import create_app
 
 app = create_app()
 

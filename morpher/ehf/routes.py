@@ -4,8 +4,8 @@ import xmltodict
 
 from flask import jsonify, request, current_app
 
-from service.ehf import bp
-from service.lib.converter import Converter
+from morpher.ehf import bp
+from morpher.lib.converter import Converter
 
 
 converter = Converter()

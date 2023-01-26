@@ -10,7 +10,7 @@ def create_app():
 
     app.logger.setLevel(logging.DEBUG)
 
-    from service.ehf import bp as ehf_bp
+    from morpher.ehf import bp as ehf_bp
 
     app.register_blueprint(ehf_bp, url_prefix="/api/ehf")
 
