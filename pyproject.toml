@@ -1,16 +1,15 @@
 [tool.poetry]
-name = "morph-service"
+name = "morpher"
 version = "0.1.0"
 description = ""
 authors = ["r3d5un <r3d5un@pm.me>"]
-
-[tool.poetry.scripts]
-server = "service:create_app()"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 xmltodict = "^0.13.0"
 Flask = "^2.2.2"
+gunicorn = "^20.1.0"
+uvicorn = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
