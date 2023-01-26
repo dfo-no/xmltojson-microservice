@@ -4,7 +4,7 @@ ARG PYTHON_VERSION=3.11.1
 ARG POETRY_VERSION=1.1.11
 
 # STAGING STAGE
-FROM python:3.11.0 as staging
+FROM python:$PYTHON_VERSION as staging
 
 ARG APP_NAME
 ARG APP_PATH
@@ -58,7 +58,7 @@ RUN poetry export --format requirements.txt --output constraints.txt --without-h
 
 # PRODUCTION MODE
 # Production image will start from a clean Python image, then install the wheel file.
-FROM python:$PYTHON_VERSION as production
+FROM python:$PYTHON_VERSION-alpine as production
 
 # Redefining variables to make them available in this image
 ARG APP_NAME
