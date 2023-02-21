@@ -1,4 +1,4 @@
-from morph_service import __version__
+from morpher import __version__
 
 
 def test_version():
