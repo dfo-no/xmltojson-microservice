@@ -59,4 +59,4 @@ def test_billing_valid():
         },
     )
     invoice = json.dumps(json.loads(response.data)["invoice"])
-    assert invoice == '"{\\n  \\"Invoice\\": {\\n    \\"ID\\": \\"2209000026085\\"\\n  }\\n}"'
+    assert invoice == '{"Invoice": {"ID": "2209000026085"}}'
