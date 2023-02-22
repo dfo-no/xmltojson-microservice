@@ -11,7 +11,9 @@ def create_app():
     app.logger.setLevel(logging.DEBUG)
 
     from morpher.ehf import bp as ehf_bp
+    from morpher.minimal import bp as minimal_bp
 
     app.register_blueprint(ehf_bp, url_prefix="/api/ehf")
+    app.register_blueprint(minimal_bp, url_prefix="/api/minimal")
 
     return app
