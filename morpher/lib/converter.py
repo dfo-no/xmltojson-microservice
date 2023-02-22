@@ -48,7 +48,8 @@ class Converter:
         Converts generic XML to JSON.
         """
         self.__logger.debug("Converting generic XML to JSON")
-        return json.dumps(xmltodict.parse(xml), indent=2)
+        json_with_formatting = json.dumps(xmltodict.parse(xml), indent=None)
+        return json.loads(json_with_formatting)
 
     def bis(self, xml):
         """
@@ -88,6 +89,6 @@ class Converter:
         )
 
         self.__logger.debug("Convert dict to JSON string")
-        json_string = json.dumps(data, indent=2)
+        json_string = json.dumps(data, indent=None)
 
-        return json_string
+        return json.loads(json_string)
