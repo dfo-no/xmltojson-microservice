@@ -84,7 +84,7 @@ def test_converter_generic():
     xml = '<?xml version="1.0" encoding="UTF-8"?><root><child>value</child></root>'
     json_string = json.dumps(converter.generic(xml))
     assert (
-        json_string == '"{\\n  \\"root\\": {\\n    \\"child\\": \\"value\\"\\n  }\\n}"'
+        json_string == '{"root": {"child": "value"}}'
     )
 
 
@@ -110,5 +110,5 @@ def test_converter_bis():
 """
     json_string = json.dumps(converter.bis(xml))
     assert (
-        json_string == '"{\\n  \\"Invoice\\": {\\n    \\"ID\\": \\"2209000026085\\"\\n  }\\n}"'
+        json_string == '{"Invoice": {"ID": "2209000026085"}}'
     )
