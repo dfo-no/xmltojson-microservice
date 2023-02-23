@@ -13,7 +13,9 @@ def minimal_invoice():
     Endpoint for converting EHF invoices into a minimized JSON format.
     """
     converter = Converter()
-    current_app.logger.info("Received request for EHF invoice conversion and minimization")
+    current_app.logger.info(
+        "Received request for EHF invoice conversion and minimization"
+    )
     data = request.get_json() or {}
     try:
         current_app.logger.debug("Extracting XML from request")
