@@ -13,13 +13,15 @@ def test_minimal_invoice_route(xml):
     client = app.test_client()
     response = client.post(
         "/api/minimal/invoice",
-        json={
-            "invoice": xml
-        },
+        json={"invoice": xml},
     )
     assert response.status_code == 200
     assert response.json["invoice"] == {
-        "Invoice": {"ID": "123456789", "SupplierID": "123456789", "CustomerID": "987654321"}
+        "Invoice": {
+            "ID": "123456789",
+            "SupplierID": "123456789",
+            "CustomerID": "987654321",
+        }
     }
 
 

@@ -24,7 +24,11 @@ def test_minimizer_minimize(data):
     """
     minimal_invoice = MinimalInvoice(data).minimized
     assert minimal_invoice == {
-        "Invoice": {"ID": "123456789", "SupplierID": "123456789", "CustomerID": "987654321"}
+        "Invoice": {
+            "ID": "123456789",
+            "SupplierID": "123456789",
+            "CustomerID": "987654321",
+        }
     }
 
 
@@ -47,7 +51,11 @@ def test_minimal_invoice_property(data):
     minimal_invoice = MinimalInvoice(data)
     assert minimal_invoice.original == data
     assert minimal_invoice.minimized == {
-        "Invoice": {"ID": "123456789", "SupplierID": "123456789", "CustomerID": "987654321"}
+        "Invoice": {
+            "ID": "123456789",
+            "SupplierID": "123456789",
+            "CustomerID": "987654321",
+        }
     }
 
 
@@ -73,7 +81,11 @@ def test_convertion_to_minimization(xml):
     minimal_invoice = MinimalInvoice(invoice_dict)
     minimal_invoice_dict = minimal_invoice.minimized
     assert minimal_invoice_dict == {
-        "Invoice": {"ID": "123456789", "SupplierID": "123456789", "CustomerID": "987654321"}
+        "Invoice": {
+            "ID": "123456789",
+            "SupplierID": "123456789",
+            "CustomerID": "987654321",
+        }
     }
 
 
@@ -98,8 +110,12 @@ def data():
     return {
         "Invoice": {
             "ID": "123456789",
-            "AccountingSupplierParty": {"Party": {"EndpointID": {"#text": "123456789"}}},
-            "AccountingCustomerParty": {"Party": {"EndpointID": {"#text": "987654321"}}},
+            "AccountingSupplierParty": {
+                "Party": {"EndpointID": {"#text": "123456789"}}
+            },
+            "AccountingCustomerParty": {
+                "Party": {"EndpointID": {"#text": "987654321"}}
+            },
         }
     }
 
