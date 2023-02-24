@@ -1,14 +1,7 @@
-import json
-
-import xmltodict
-
 from flask import jsonify, request, current_app
 
 from morpher.ehf import bp
 from morpher.lib.converter import Converter
-
-
-converter = Converter()
 
 
 @bp.route("/invoice", methods=["POST"])
@@ -16,6 +9,7 @@ def billing():
     """
     Endpoint for converting EHF invoices and credit notes from XML to JSON.
     """
+    converter = Converter()
     current_app.logger.info("Received request for EHF invoice conversion")
     data = request.get_json() or {}
     try:
@@ -35,6 +29,7 @@ def order():
     """
     Endpoint for converting EHF orders from XML to JSON.
     """
+    converter = Converter()
     current_app.logger.info("Received request for EHF order conversion")
     data = request.get_json() or {}
     try:
@@ -54,6 +49,7 @@ def catalogue():
     """
     Endpoint for converting EHF catalogues from XML to JSON.
     """
+    converter = Converter()
     current_app.logger.info("Received request for EHF catagolue conversion")
     data = request.get_json() or {}
     try:

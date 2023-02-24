@@ -1,6 +1,7 @@
 import json
 
 from morpher.lib.converter import Converter
+from tests.fixtures.data import minimal_xml
 
 
 def test_bis_namespaces():
@@ -83,32 +84,15 @@ def test_converter_generic():
     converter = Converter()
     xml = '<?xml version="1.0" encoding="UTF-8"?><root><child>value</child></root>'
     json_string = json.dumps(converter.generic(xml))
-    assert (
-        json_string == '{"root": {"child": "value"}}'
-    )
+    assert json_string == '{"root": {"child": "value"}}'
 
 
-def test_converter_bis():
+def test_converter_bis(minimal_xml):
     """
     GIVEN a BIS XML string
     WHEN the XML is converted to JSON
     THEN the JSON should be returned
     """
     converter = Converter()
-    xml = """<?xml version="1.0" encoding="UTF-8"?>
-<Invoice
-        xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-        xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
-        xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-        xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
-        xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2"
-        xmlns:udt="urn:un:unece:uncefact:data:draft:UnqualifiedDataTypes:2"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <cbc:ID>2209000026085</cbc:ID>
-</Invoice>
-"""
-    json_string = json.dumps(converter.bis(xml))
-    assert (
-        json_string == '{"Invoice": {"ID": "2209000026085"}}'
-    )
+    json_string = json.dumps(converter.bis(minimal_xml))
+    assert json_string == '{"Invoice": {"ID": "2209000026085"}}'
