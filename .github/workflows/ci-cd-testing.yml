@@ -8,16 +8,16 @@
 #   ░░░░░░░░░  ░░░░░         ░░░░░░░░░  ░░░░░░░░░░   
 #
 ## Author: Øyvind Kristiansen (oyvind.kristiansen@dfo.no)
-## This workflow will build and deploy the DatahubApi to the dev environment.
+## This workflow will build and deploy the DatahubApi to the testing environment.
 
-name: DEV ENV CI/CD
+name: TESTING ENV CI/CD
 on:
   # Manual trigger
   workflow_dispatch:
   push:
-    branches: [ "dev" ]
+    branches: [ "testing" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "testing" ]
 
 env:
   REGISTRY: ghcr.io
@@ -82,3 +82,36 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy to TESTING
+    permissions:
+      id-token: write
+      contents: read
+      actions: write
+    if: github.ref == 'refs/heads/testing'
+    needs: build-and-push-image
+    runs-on: xmltojson-testing-runner
+    environment: testing
+    steps:
+      - name: Setup Kubectl
+        uses: azure/setup-kubectl@v2
+        id: install
+
+      - name: Set the Kubernetes Context
+        uses: azure/k8s-set-context@v2
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Deploy to the Kubernetes Cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: ${{ env.K8S_NAMESPACE }}
+          manifests: |
+            kube/namespace.yaml
+            kube/testing/deployment.yaml
+            kube/testing/service.yaml
