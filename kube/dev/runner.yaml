@@ -1,0 +1,11 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: xmltojson-runner
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: dfo-no/xmltojson-microservice
+      labels:
+        - xmltojson-dev-runner

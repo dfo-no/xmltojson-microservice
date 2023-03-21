@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xmltojson
+  namespace: microservice
+  labels:
+    app: xmltojson
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xmltojson
+  template:
+    metadata:
+      labels:
+        app: xmltojson
+    spec:
+      containers:
+        - name: xmltojson
+          image: ghcr.io/dfo-no/xmltojson-microservice:testing
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+      imagePullSecrets:
+        - name: dfo-container-registry
