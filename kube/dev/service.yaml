@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xmltojson
+  namespace: microservice
+  labels:
+    app: xmltojson
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 32088
+    port: 8888
+    protocol: TCP
+    name: http
+  selector:
+      app: xmltojson
