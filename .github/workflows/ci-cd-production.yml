@@ -95,7 +95,7 @@ jobs:
     environment: production
     steps:
       - name: Setup Kubectl
-        uses: azure/setup-kubectl@v2
+        uses: azure/setup-kubectl@v3
         id: install
 
       - name: Set the Kubernetes Context
